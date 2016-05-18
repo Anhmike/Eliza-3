@@ -3,7 +3,7 @@
 /*eslint:recommended*/
 
 if (!ElizaData) {
-    console.warn("Please load ElizaData.js BEFORE ElizaBot.js for proper functionality.");
+    console.warn("Please load ElizaData.js before ElizaBot.js for proper functionality.");
 }
 
 /** @constructor - Main class holding everything about ElizaBot (excluding data) */
@@ -14,8 +14,8 @@ class ElizaBot {
         this.capitalizeFirstLetter = true;
         this.debug = false;
         this.memSize = 20;
-        this.version = "1.1.21 (A)";
-        this._init();
+        this.version = "1.1.21";
+        this.init();
     }
     
     /** @constructor */
@@ -31,6 +31,7 @@ class ElizaBot {
             this.lastchoice[k] = [];
             
             rules.forEach( (b, i = 0) => {
+                console.log(i);
                 this.lastchoice[k][i] = -1;
             });
         });
@@ -94,7 +95,7 @@ class ElizaBot {
           // expand synonyms (v.1.1: work around lambda function)
           let m=sre.exec(r[0]);
           while (m) {
-            var sp=(synPatterns[m[1]])? synPatterns[m[1]]:m[1];
+            var sp=(synonymPatterns[m[1]])? synonymPatterns[m[1]]:m[1];
             r[0]=r[0].substring(0,m.index)+sp+r[0].substring(m.index+m[0].length);
             m=sre.exec(r[0]);
           }
